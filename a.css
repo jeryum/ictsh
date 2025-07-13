@@ -58,7 +58,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease;
         }
-        .fa-arrow-left {
+        .fa-moon {
     
     font-size: 2rem;
     transition: transform 0.3s ease;
@@ -402,7 +402,7 @@ section h2::after {
     border-color: var(--t2);
 }
 
-.back-button .fa-arrow-left {
+.back-button .fa-moon {
     font-size: 1.2rem;
     color: var(--t2);
     transition: color 0.3s ease;
@@ -415,7 +415,7 @@ section h2::after {
     transition: color 0.3s ease;
 }
 
-.back-button:hover .fa-arrow-left,
+.back-button:hover .fa-moon,
 .back-button:hover .back-text {
     color: var(--t1);
 }
@@ -427,7 +427,7 @@ section h2::after {
         padding: 0.6rem 1rem;
     }
     
-    .back-button .fa-arrow-left {
+    .back-button .fa-moon {
         font-size: 1rem;
     }
     
