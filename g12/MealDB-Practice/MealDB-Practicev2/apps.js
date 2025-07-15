@@ -17,8 +17,8 @@ function renderMealResultsByName(responses) {
 
     const titleElement = document.createElement("a");
     titleElement.textContent = response.strMeal;
-    titleElement.classList.add('title');
-    titleElement.href = `meal.html?idMeal=${response.idMeal}`;  // Links to meal.html with meal ID
+    titleElement.classList.add("title");
+    titleElement.href = `meal.html?idMeal=${response.idMeal}`; // Links to meal.html with meal ID
     titleElement.target = "_self";
 
     const categoryElement = document.createElement("p");
@@ -33,23 +33,26 @@ function renderMealResultsByName(responses) {
 }
 
 // Event listener for search button click
-document.getElementById('btnSearch').addEventListener('click', function () {
-  const searchValue = document.getElementById('SearchName').value.trim();
+document.getElementById("btnSearch").addEventListener("click", function () {
+  const searchValue = document.getElementById("SearchName").value.trim();
 
   if (searchValue) {
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         if (data.meals) {
           renderMealResultsByName(data.meals);
         } else {
-          document.getElementById('ingredients-container').innerHTML = '<p>No meals found</p>';
+          document.getElementById("ingredients-container").innerHTML =
+            "<p>No meals found</p>";
         }
       })
       .catch(() => {
-        document.getElementById('ingredients-container').innerHTML = '<p>Error fetching meals</p>';
+        document.getElementById("ingredients-container").innerHTML =
+          "<p>Error fetching meals</p>";
       });
   } else {
-    document.getElementById('ingredients-container').innerHTML = '<p>Please enter a meal name</p>';
+    document.getElementById("ingredients-container").innerHTML =
+      "<p>Please enter a meal name</p>";
   }
 });

@@ -16,7 +16,7 @@
         class="task-name"
         @dblclick="editing = { index, key: 'name' }"
       >
-        {{ task.name || 'untitled' }}
+        {{ task.name || "untitled" }}
       </span>
 
       <!-- Editable Task Time -->
@@ -34,7 +34,7 @@
         class="task-time"
         @dblclick="editing = { index, key: 'time' }"
       >
-        {{ task.time ? formatTime(task.time) : 'No time set' }}
+        {{ task.time ? formatTime(task.time) : "No time set" }}
       </span>
 
       <button @click="$emit('delete-task', index)" class="delete-button">
@@ -45,28 +45,28 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 defineProps({
   tasks: Array,
 });
 
-defineEmits(['delete-task', 'update-task']);
+defineEmits(["delete-task", "update-task"]);
 
 const editing = ref({});
 
 // Function to format time into AM/PM
 function formatTime(time) {
-  if (!time) return ''; // Return empty string for empty time
-  const [hour, minute] = time.split(':').map(Number);
-  const ampm = hour >= 12 ? 'PM' : 'AM';
+  if (!time) return ""; // Return empty string for empty time
+  const [hour, minute] = time.split(":").map(Number);
+  const ampm = hour >= 12 ? "PM" : "AM";
   const formattedHour = hour % 12 || 12; // Convert 0 or 24 to 12
-  return `${formattedHour}:${minute.toString().padStart(2, '0')} ${ampm}`;
+  return `${formattedHour}:${minute.toString().padStart(2, "0")} ${ampm}`;
 }
 
 function updateTask({ index, key, value }) {
   editing.value = {}; // Reset editing state
-  emit('update-task', { index, key, value });
+  emit("update-task", { index, key, value });
 }
 </script>
 
@@ -88,12 +88,12 @@ function updateTask({ index, key, value }) {
 }
 
 .task-name {
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
 }
 
 .task-time {
-  color: #AAAAAA;
+  color: #aaaaaa;
   margin-left: 10px;
   cursor: pointer;
 }
@@ -102,30 +102,30 @@ function updateTask({ index, key, value }) {
   padding: 8px 12px;
   border: 1px solid #404040;
   background-color: #101010;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 4px;
   width: 150px;
   transition: border-color 0.3s;
 }
 
 .editable-input[type="time"] {
-  color: #FFFFFF;
+  color: #ffffff;
   appearance: none;
   position: relative;
 }
 
 .editable-input[type="time"]::-webkit-calendar-picker-indicator {
-  color: #FFFFFF;
+  color: #ffffff;
   filter: invert(1); /* Makes clock icon white */
   cursor: pointer;
 }
 
 .editable-input::placeholder {
-  color: #AAAAAA;
+  color: #aaaaaa;
 }
 
 .editable-input:focus {
-  border-color: #FFFFFF;
+  border-color: #ffffff;
   outline: none;
 }
 

@@ -17,8 +17,8 @@ function renderMealResultsByLetter(responses) {
 
     const titleElement = document.createElement("a");
     titleElement.textContent = response.strMeal;
-    titleElement.classList.add('title');
-    titleElement.href = `meal.html?idMeal=${response.idMeal}`;  // Links to meal.html with meal ID
+    titleElement.classList.add("title");
+    titleElement.href = `meal.html?idMeal=${response.idMeal}`; // Links to meal.html with meal ID
     titleElement.target = "_self";
 
     const categoryElement = document.createElement("p");
@@ -33,22 +33,24 @@ function renderMealResultsByLetter(responses) {
 }
 
 // Add event listeners to each anchor tag for first letter search
-document.querySelectorAll('.input a').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
+document.querySelectorAll(".input a").forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
     e.preventDefault(); // Prevent default anchor behavior
     const letter = this.textContent.toLowerCase(); // Get the clicked letter
 
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         if (data.meals) {
           renderMealResultsByLetter(data.meals);
         } else {
-          document.getElementById('ingredients-container').innerHTML = '<p>No meals found</p>';
+          document.getElementById("ingredients-container").innerHTML =
+            "<p>No meals found</p>";
         }
       })
       .catch(() => {
-        document.getElementById('ingredients-container').innerHTML = '<p>Error fetching meals</p>';
+        document.getElementById("ingredients-container").innerHTML =
+          "<p>Error fetching meals</p>";
       });
   });
 });

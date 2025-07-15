@@ -6,7 +6,9 @@ const submitBtn = document.querySelector(".submit");
 const progressText = document.querySelectorAll(".step p");
 const progressCheck = document.querySelectorAll(".step .check");
 const bullets = document.querySelectorAll(".step .bullet");
-const fields = document.querySelectorAll(".page .field input, .page .field select");
+const fields = document.querySelectorAll(
+  ".page .field input, .page .field select",
+);
 
 let current = 1; // Start at the first step
 
@@ -26,7 +28,9 @@ function resetProgress(step) {
 
 // Function to handle next step navigation with validation
 function goToNextStep() {
-  const inputs = document.querySelectorAll(`.page:nth-child(${current}) .field input, .page:nth-child(${current}) .field select`);
+  const inputs = document.querySelectorAll(
+    `.page:nth-child(${current}) .field input, .page:nth-child(${current}) .field select`,
+  );
 
   for (let input of inputs) {
     if (input.type === "text" || input.type === "number") {
@@ -80,7 +84,9 @@ prevBtns.forEach((btn) => {
 // Add event listener for submit button
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  const inputs = document.querySelectorAll(`.page:nth-child(${current}) .field input, .page:nth-child(${current}) .field select`);
+  const inputs = document.querySelectorAll(
+    `.page:nth-child(${current}) .field input, .page:nth-child(${current}) .field select`,
+  );
 
   for (let input of inputs) {
     if (input.type === "text" || input.type === "number") {

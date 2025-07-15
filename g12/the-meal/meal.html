@@ -1,27 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>The MEAL DB</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
       <nav class="navbar">
-        <div class="logo">
-          The MEAL DB
-        </div>
+        <div class="logo">The MEAL DB</div>
       </nav>
     </header>
 
     <main class="container">
       <section class="search-section">
         <div class="search-box">
-          <input type="text" id="SearchName" placeholder="Enter meal name or id" />
+          <input
+            type="text"
+            id="SearchName"
+            placeholder="Enter meal name or id"
+          />
         </div>
-        
+
         <div class="filters">
           <div class="filter-group">
             <h2>Select Letter</h2>
@@ -115,8 +123,11 @@
       </section>
 
       <section id="ingredients-container" class="ingredients-section"></section>
-      
-      <section id="meal-details-container" class="meal-details-section"></section>
+
+      <section
+        id="meal-details-container"
+        class="meal-details-section"
+      ></section>
     </main>
 
     <script src="app.js"></script>

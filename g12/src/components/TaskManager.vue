@@ -22,19 +22,23 @@
         No tasks available.
       </div>
       <div v-else>
-        <TaskList :tasks="tasks" @delete-task="deleteTask" @update-task="updateTask" />
+        <TaskList
+          :tasks="tasks"
+          @delete-task="deleteTask"
+          @update-task="updateTask"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import TaskList from './TaskList.vue';
+import { ref } from "vue";
+import TaskList from "./TaskList.vue";
 
 const tasks = ref([]);
-const newTaskName = ref('');
-const newTaskTime = ref('');
+const newTaskName = ref("");
+const newTaskTime = ref("");
 const showError = ref(false);
 
 function addTask() {
@@ -43,8 +47,8 @@ function addTask() {
       name: newTaskName.value,
       time: newTaskTime.value,
     });
-    newTaskName.value = '';
-    newTaskTime.value = '';
+    newTaskName.value = "";
+    newTaskTime.value = "";
     showError.value = false;
   } else {
     showError.value = true;
@@ -63,7 +67,7 @@ function updateTask({ index, key, value }) {
 <style scoped>
 .container {
   background-color: #000000;
-  color: #FFFFFF;
+  color: #ffffff;
   min-height: 100vh;
   padding: 20px;
   font-family: Arial, sans-serif;
@@ -71,7 +75,7 @@ function updateTask({ index, key, value }) {
 
 .title {
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 20px;
 }
 
@@ -88,11 +92,11 @@ function updateTask({ index, key, value }) {
   border: 1px solid #303030;
   border-radius: 4px;
   background-color: #101010;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .input::placeholder {
-  color: #AAAAAA;
+  color: #aaaaaa;
 }
 
 .input-error {
@@ -108,7 +112,7 @@ function updateTask({ index, key, value }) {
 .add-button {
   padding: 10px 20px;
   background-color: #404040;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -121,40 +125,33 @@ function updateTask({ index, key, value }) {
 
 .no-tasks-message {
   text-align: center;
-  color: #AAAAAA;
+  color: #aaaaaa;
   font-size: 18px;
   margin-top: 20px;
 }
 </style>
-Here's the rest of the code:
-
-
-
-Also, update TaskManager.vue:
-
-
-TaskManager.vue
+Here's the rest of the code: Also, update TaskManager.vue: TaskManager.vue
 
 <template>
-<!-- ... -->
+  <!-- ... -->
 </template>
 
 <script setup>
 // ...
 
 function addTask() {
-if (newTaskName.value && newTaskTime.value) {
-tasks.value.push({
-name: newTaskName.value,
-time: newTaskTime.value,
-prevName: newTaskName.value,
-});
-newTaskName.value = '';
-newTaskTime.value = '';
-showError.value = false;
-} else {
-showError.value = true;
-}
+  if (newTaskName.value && newTaskTime.value) {
+    tasks.value.push({
+      name: newTaskName.value,
+      time: newTaskTime.value,
+      prevName: newTaskName.value,
+    });
+    newTaskName.value = "";
+    newTaskTime.value = "";
+    showError.value = false;
+  } else {
+    showError.value = true;
+  }
 }
 
 // ...

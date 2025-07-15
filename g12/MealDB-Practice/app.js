@@ -15,12 +15,12 @@ function renderMealResults(responses) {
 
     const titleElement = document.createElement("a");
     titleElement.textContent = response.strMeal;
-    titleElement.classList.add('title');
+    titleElement.classList.add("title");
     titleElement.href = `meal.html?idMeal=${response.idMeal}`;
     titleElement.target = "_self";
 
     const categoryElement = document.createElement("p");
-    categoryElement.textContent = response.strCategory || 'Unknown Category';
+    categoryElement.textContent = response.strCategory || "Unknown Category";
 
     mealContainer.appendChild(mealImage);
     mealContainer.appendChild(titleElement);
@@ -32,10 +32,10 @@ function renderMealResults(responses) {
 
 // Function to fetch meal details including category
 function fetchMealDetails(meals) {
-  const mealPromises = meals.map(meal =>
+  const mealPromises = meals.map((meal) =>
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`)
-      .then(response => response.json())
-      .then(data => data.meals ? data.meals[0] : null)
+      .then((response) => response.json())
+      .then((data) => (data.meals ? data.meals[0] : null)),
   );
 
   return Promise.all(mealPromises);
@@ -43,8 +43,8 @@ function fetchMealDetails(meals) {
 
 // Function to reset other dropdowns
 function resetOtherDropdowns(except) {
-  const dropdowns = ['letterSelect', 'categorySelect', 'areaSelect'];
-  dropdowns.forEach(id => {
+  const dropdowns = ["letterSelect", "categorySelect", "areaSelect"];
+  dropdowns.forEach((id) => {
     if (id !== except) {
       const dropdown = document.getElementById(id);
       dropdown.selectedIndex = 0; // Reset to default
@@ -53,66 +53,78 @@ function resetOtherDropdowns(except) {
 }
 
 // Add event listener for letter dropdown
-document.getElementById('letterSelect').addEventListener('change', function () {
+document.getElementById("letterSelect").addEventListener("change", function () {
   const letter = this.value;
-  resetOtherDropdowns('letterSelect');
+  resetOtherDropdowns("letterSelect");
 
   if (letter) {
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         if (data.meals) {
           renderMealResults(data.meals);
         } else {
-          document.getElementById('ingredients-container').innerHTML = '<p>No meals found</p>';
+          document.getElementById("ingredients-container").innerHTML =
+            "<p>No meals found</p>";
         }
       })
       .catch(() => {
-        document.getElementById('ingredients-container').innerHTML = '<p>Error fetching meals</p>';
+        document.getElementById("ingredients-container").innerHTML =
+          "<p>Error fetching meals</p>";
       });
   }
 });
 
 // Add event listener for category dropdown
-document.getElementById('categorySelect').addEventListener('change', function () {
-  const category = this.value;
-  resetOtherDropdowns('categorySelect');
+document
+  .getElementById("categorySelect")
+  .addEventListener("change", function () {
+    const category = this.value;
+    resetOtherDropdowns("categorySelect");
 
-  if (category) {
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.meals) {
-          fetchMealDetails(data.meals)
-            .then(detailedMeals => renderMealResults(detailedMeals));
-        } else {
-          document.getElementById('ingredients-container').innerHTML = '<p>No meals found in this category</p>';
-        }
-      })
-      .catch(() => {
-        document.getElementById('ingredients-container').innerHTML = '<p>Error fetching meals</p>';
-      });
-  }
-});
+    if (category) {
+      fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.meals) {
+            fetchMealDetails(data.meals).then((detailedMeals) =>
+              renderMealResults(detailedMeals),
+            );
+          } else {
+            document.getElementById("ingredients-container").innerHTML =
+              "<p>No meals found in this category</p>";
+          }
+        })
+        .catch(() => {
+          document.getElementById("ingredients-container").innerHTML =
+            "<p>Error fetching meals</p>";
+        });
+    }
+  });
 
 // Add event listener for area dropdown
-document.getElementById('areaSelect').addEventListener('change', function () {
+document.getElementById("areaSelect").addEventListener("change", function () {
   const area = this.value;
-  resetOtherDropdowns('areaSelect');
+  resetOtherDropdowns("areaSelect");
 
   if (area) {
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area.charAt(0).toUpperCase() + area.slice(1)}`)
-      .then(response => response.json())
-      .then(data => {
+    fetch(
+      `https://www.themealdb.com/api/json/v1/1/filter.php?a=${area.charAt(0).toUpperCase() + area.slice(1)}`,
+    )
+      .then((response) => response.json())
+      .then((data) => {
         if (data.meals) {
-          fetchMealDetails(data.meals)
-            .then(detailedMeals => renderMealResults(detailedMeals));
+          fetchMealDetails(data.meals).then((detailedMeals) =>
+            renderMealResults(detailedMeals),
+          );
         } else {
-          document.getElementById('ingredients-container').innerHTML = '<p>No meals found in this area</p>';
+          document.getElementById("ingredients-container").innerHTML =
+            "<p>No meals found in this area</p>";
         }
       })
       .catch(() => {
-        document.getElementById('ingredients-container').innerHTML = '<p>Error fetching meals</p>';
+        document.getElementById("ingredients-container").innerHTML =
+          "<p>Error fetching meals</p>";
       });
   }
 });
@@ -134,7 +146,7 @@ function renderMealResultsByName(responses) {
 
     const titleElement = document.createElement("a");
     titleElement.textContent = response.strMeal;
-    titleElement.classList.add('title');
+    titleElement.classList.add("title");
     titleElement.href = `meal.html?idMeal=${response.idMeal}`;
     titleElement.target = "_self";
 
@@ -151,55 +163,60 @@ function renderMealResultsByName(responses) {
 
 // Function to search meals based on input value
 function searchMeals() {
-  const searchValue = document.getElementById('SearchName').value.trim();
-  const container = document.getElementById('ingredients-container');
+  const searchValue = document.getElementById("SearchName").value.trim();
+  const container = document.getElementById("ingredients-container");
 
   if (searchValue) {
     // Check if the input is a number (meal ID)
     if (!isNaN(searchValue)) {
-      fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${searchValue}`)
-        .then(response => {
-          if (!response.ok) throw new Error('Network response was not ok');
+      fetch(
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${searchValue}`,
+      )
+        .then((response) => {
+          if (!response.ok) throw new Error("Network response was not ok");
           return response.json();
         })
-        .then(data => {
+        .then((data) => {
           if (data.meals) {
             renderMealResultsByName(data.meals);
           } else {
-            container.innerHTML = '<p>No meals found</p>';
+            container.innerHTML = "<p>No meals found</p>";
           }
         })
-        .catch(error => {
-          console.error('Error fetching meals by ID:', error);
-          container.innerHTML = '<p>Error fetching meal by ID. Please check the ID and try again.</p>';
+        .catch((error) => {
+          console.error("Error fetching meals by ID:", error);
+          container.innerHTML =
+            "<p>Error fetching meal by ID. Please check the ID and try again.</p>";
         });
     } else {
       // Search by meal name
-      fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`)
-        .then(response => {
-          if (!response.ok) throw new Error('Network response was not ok');
+      fetch(
+        `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`,
+      )
+        .then((response) => {
+          if (!response.ok) throw new Error("Network response was not ok");
           return response.json();
         })
-        .then(data => {
+        .then((data) => {
           if (data.meals) {
             renderMealResultsByName(data.meals);
           } else {
-            container.innerHTML = '<p>No meals found</p>';
+            container.innerHTML = "<p>No meals found</p>";
           }
         })
-        .catch(error => {
-          console.error('Error fetching meals by name:', error);
-          container.innerHTML = '<p>Error fetching meals. Please try again later.</p>';
+        .catch((error) => {
+          console.error("Error fetching meals by name:", error);
+          container.innerHTML =
+            "<p>Error fetching meals. Please try again later.</p>";
         });
     }
   } else {
-    container.innerHTML = '<p>Please enter a meal name or ID</p>';
+    container.innerHTML = "<p>Please enter a meal name or ID</p>";
   }
 }
 
 // Event listener for input in the search box
-document.getElementById('SearchName').addEventListener('input', searchMeals);
-
+document.getElementById("SearchName").addEventListener("input", searchMeals);
 
 // Function to render meal results with click event to load details
 function renderMealResults(responses) {
@@ -218,16 +235,16 @@ function renderMealResults(responses) {
 
     const titleElement = document.createElement("a");
     titleElement.textContent = response.strMeal;
-    titleElement.classList.add('title');
+    titleElement.classList.add("title");
     titleElement.href = "#"; // Prevent page navigation
-    titleElement.addEventListener('click', (event) => {
+    titleElement.addEventListener("click", (event) => {
       event.preventDefault(); // Prevent the default link behavior
       fetchMealDetailsById(response.idMeal); // Load meal details on click
       scrollToDetails(); // Scroll to details container
     });
 
     const categoryElement = document.createElement("p");
-    categoryElement.textContent = response.strCategory || 'Unknown Category';
+    categoryElement.textContent = response.strCategory || "Unknown Category";
 
     mealContainer.appendChild(mealImage);
     mealContainer.appendChild(titleElement);
@@ -239,29 +256,31 @@ function renderMealResults(responses) {
 
 // Function to scroll smoothly to the details container
 function scrollToDetails() {
-  const detailsContainer = document.getElementById('meal-details-container');
-  detailsContainer.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the details container
+  const detailsContainer = document.getElementById("meal-details-container");
+  detailsContainer.scrollIntoView({ behavior: "smooth" }); // Smooth scroll to the details container
 }
 
 // Function to fetch and render meal details
 function fetchMealDetailsById(mealId) {
   fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       if (data.meals) {
         renderMealDetails(data.meals[0]); // Render meal details
       } else {
-        document.getElementById('meal-details-container').innerHTML = '<p>Meal not found.</p>';
+        document.getElementById("meal-details-container").innerHTML =
+          "<p>Meal not found.</p>";
       }
     })
     .catch(() => {
-      document.getElementById('meal-details-container').innerHTML = '<p>Error fetching meal details.</p>';
+      document.getElementById("meal-details-container").innerHTML =
+        "<p>Error fetching meal details.</p>";
     });
 }
 
 // Function to render meal details in the container
 function renderMealDetails(meal) {
-  const container = document.getElementById('meal-details-container');
+  const container = document.getElementById("meal-details-container");
 
   // Create HTML structure for the meal details
   const mealHTML = `
@@ -272,17 +291,21 @@ function renderMealDetails(meal) {
       <p><strong>Area:</strong> ${meal.strArea}</p>
       <h2>Ingredients:</h2>
       <ul>
-        ${getIngredientsList(meal).map((ingredient, index) => `
+        ${getIngredientsList(meal)
+          .map(
+            (ingredient, index) => `
           <li>
             ${index + 1}. 
             <img src="${ingredient.imageUrl}" alt="${ingredient.name}" class="ingredient-image">
             ${ingredient.name}
           </li>
-        `).join('')}
+        `,
+          )
+          .join("")}
       </ul>
       <h2>Instructions:</h2>
       <p>${meal.strInstructions}</p>
-      ${meal.strYoutube ? `<a href="${meal.strYoutube}" target="_blank">Watch on YouTube</a>` : ''}
+      ${meal.strYoutube ? `<a href="${meal.strYoutube}" target="_blank">Watch on YouTube</a>` : ""}
     </div>
   `;
 
@@ -298,7 +321,7 @@ function getIngredientsList(meal) {
     if (ingredient) {
       ingredients.push({
         name: `${measure} ${ingredient}`,
-        imageUrl: `https://www.themealdb.com/images/ingredients/${ingredient}.png`
+        imageUrl: `https://www.themealdb.com/images/ingredients/${ingredient}.png`,
       });
     }
   }
