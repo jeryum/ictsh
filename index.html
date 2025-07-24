@@ -10,11 +10,9 @@
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-    <div id="particles-js"></div>
      <a id="back" class="back-button">
          <i class="fa-solid fa-sun"></i>
        <i class="fa-solid fa-moon"></i>
-        <span class="back-text">Back</span>
      </a>
     
         <section>
@@ -45,8 +43,6 @@
                         <h3 class="project-title">Web basics</h3>
                         <p class="project-desc">
                           Interactive website recap using HTML, CSS, JavaScript for practice projects.
-
- 
                         </p>
                         <div class="project-links">
                     <a href="./g12/WebBasics/web-basics.html" target="_blank">Live Demo</a>
@@ -58,15 +54,6 @@
                     </div>
                 </div>
                 
-                
-              
-               
-               
-                
-                
-           
-                
-               
                 <!--  -->
                 <div class="project-card-ict" >
                     <img src="https://i.ibb.co/8g53WbY9/Screenshot-2025-07-02-18-54-21-800-com-teejay-trebedit-edit.jpg" alt="project-img" class="project-img-ict">
@@ -74,8 +61,6 @@
                         <h3 class="project-title">hexsai</h3>
                         <p class="project-desc">
                           Gadget shop website created by me and my bro showcasing various cool gadgets.
-                          
-                        
                         </p>
                         <div class="project-links">
                             <a href="./g11/hexsai/hexs.html" target="_blank">Live Demo</a>
@@ -92,8 +77,6 @@
                         <h3 class="project-title">The meal db</h3>
                         <p class="project-desc">
                             Static website using TheMealDB API to search meals by name, ID, category.
-                            
-                        
                         </p>
                         <div class="project-links">
                             <a href="./g12/the-meal/meal.html" target="_blank">Live Demo</a>
@@ -111,10 +94,6 @@
                         <h3 class="project-title">Dice Roller</h3>
                         <p class="project-desc">
                        Two-player dice roller game where each player rolls a die; highest number wins the round. Simple fun.
-
-
-
- 
                         </p>
                         <div class="project-links">
                     <a href="./g11/DiceRoller/dice.html" target="_blank">Live Demo</a>
@@ -131,8 +110,6 @@
                         <h3 class="project-title">Numguess</h3>
                         <p class="project-desc">
                           Two-player number guessing game where players take turns guessing a secret number. Closest guess wins round.
-
-
                         </p>
                         <div class="project-links">
                     <a href="./g11/NumGuess/numg.html" target="_blank">Live Demo</a>
@@ -143,19 +120,42 @@
                         </div>
                     </div>
                 </div>
-                
-             
             </div>
         </section>
-    </div>
 
-
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
    <!-- AOS JS -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
   AOS.init();
 </script>
  <script src="../script.js"></script>
+ <script>
+   // Theme toggle functionality
+   const backButton = document.getElementById('back');
+   const sunIcon = document.querySelector('.fa-sun');
+   const moonIcon = document.querySelector('.fa-moon');
+   
+   // Check for saved theme preference
+   const currentTheme = localStorage.getItem('theme') || 'dark';
+   document.body.className = currentTheme;
+   updateIcons(currentTheme);
+   
+   backButton.addEventListener('click', () => {
+     const newTheme = document.body.className === 'dark' ? 'light' : 'dark';
+     document.body.className = newTheme;
+     localStorage.setItem('theme', newTheme);
+     updateIcons(newTheme);
+   });
+   
+   function updateIcons(theme) {
+     if (theme === 'dark') {
+       sunIcon.style.display = 'none';
+       moonIcon.style.display = 'block';
+     } else {
+       sunIcon.style.display = 'block';
+       moonIcon.style.display = 'none';
+     }
+   }
+ </script>
 </body>
 </html>
