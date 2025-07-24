@@ -1,4 +1,5 @@
 :root {
+  /* Dark Theme Variables */
   --dark-1: #151515;
   --dark-2: #202020;
   --dark-4: #404040;
@@ -9,6 +10,7 @@
   --dark-t2: #aaaaaa;
   --dark-t3: #444444;
   
+  /* Light Theme Variables */
   --light-1: #f5f5f5;
   --light-2: #e0e0e0;
   --light-4: #d0d0d0;
@@ -20,6 +22,7 @@
   --light-t3: #888888;
 }
 
+/* Apply Dark Theme by Default */
 body.dark {
   --1: var(--dark-1);
   --2: var(--dark-2);
@@ -32,6 +35,7 @@ body.dark {
   --t3: var(--dark-t3);
 }
 
+/* Light Theme */
 body.light {
   --1: var(--light-1);
   --2: var(--light-2);
@@ -44,6 +48,7 @@ body.light {
   --t3: var(--light-t3);
 }
 
+/* Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -58,12 +63,32 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Particles Container */
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-color: var(--pbg);
+  transition: background-color 0.3s ease;
+}
+
+/* Content Positioning */
+section, .back-button {
+  position: relative;
+  z-index: 1;
+}
+
+/* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
 }
 
+/* Header */
 header {
   display: flex;
   flex-direction: column;
@@ -84,13 +109,6 @@ header {
   transition: transform 0.3s ease;
 }
 
-.fa-sun, .fa-moon {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-  color: var(--t2);
-  cursor: pointer;
-}
-
 .profile-img:hover {
   transform: scale(1.05);
 }
@@ -109,6 +127,7 @@ h1 {
   line-height: 1.6;
 }
 
+/* Social Links */
 .social-links {
   display: flex;
   gap: 1.5rem;
@@ -118,9 +137,7 @@ h1 {
 .social-links a {
   color: var(--t2);
   font-size: 1.5rem;
-  transition:
-    color 0.3s ease,
-    transform 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .social-links a:hover {
@@ -128,6 +145,7 @@ h1 {
   transform: translateY(-3px);
 }
 
+/* Sections */
 section {
   margin: 4rem 0;
   animation: slideUp 0.8s ease-in-out;
@@ -151,6 +169,7 @@ h2::after {
   background-color: var(--br);
 }
 
+/* Projects Grid */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -159,7 +178,7 @@ h2::after {
 
 .projects-grid-ict {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 2fr;
   gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -184,14 +203,13 @@ h2::after {
   }
 }
 
+/* Project Cards */
 .project-card {
   background-color: var(--1);
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--br);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card-ict {
@@ -199,13 +217,11 @@ h2::after {
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--br);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 100%;
 }
 
-.project-card:hover {
+.project-card:hover, .project-card-ict:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
@@ -264,50 +280,30 @@ h2::after {
   border-color: var(--t2);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Technology Stack Icons */
 .fa-html5 {
-  color: #e34c26; /* HTML5 orange */
+  color: #e34c26;
   font-size: 1.5rem;
 }
 
 .fa-css3-alt {
-  color: #264de4; /* CSS3 blue */
+  color: #264de4;
   font-size: 1.5rem;
 }
 
 .fa-js {
-  color: #f7df1e; /* JavaScript yellow */
+  color: #f7df1e;
   font-size: 1.5rem;
 }
 
 .fa-php {
-  color: #8892be; /* PHP blue-gray */
+  color: #8892be;
   font-size: 1.5rem;
   padding: 0.2rem;
 }
 
 .fa-python {
-  color: #3776ab; /* Python Blue */
+  color: #3776ab;
   background: linear-gradient(135deg, #3776ab 50%, #ffd43b 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -316,18 +312,20 @@ h2::after {
 }
 
 .fa-node-js {
-  color: #3c873a; /* Node.js green */
+  color: #3c873a;
   font-size: 1.5rem;
 }
 
 .fa-database {
-  color: #4db33d; /* MongoDB green */
+  color: #4db33d;
   font-size: 1.5rem;
 }
+
 .fa-vuejs {
-  color: #42b883; /* Vue.js green */
+  color: #42b883;
   font-size: 1.5rem;
 }
+
 .project-desc i {
   margin-right: 0.2rem;
 }
@@ -347,11 +345,7 @@ section h2::after {
   width: 100px;
 }
 
-.project-card-ict:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-}
-
+/* Theme Toggle Button */
 .back-button {
   position: fixed;
   top: 2rem;
@@ -389,6 +383,45 @@ section h2::after {
   color: var(--t1);
 }
 
+/* Hide appropriate icon based on theme */
+.back-button .fa-sun {
+  display: none;
+}
+
+.back-button .fa-moon {
+  display: block;
+}
+
+body.light .back-button .fa-sun {
+  display: block;
+}
+
+body.light .back-button .fa-moon {
+  display: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .back-button {
     top: 1.5rem;
